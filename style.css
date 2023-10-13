@@ -20,7 +20,7 @@ main {
 #grid {
     width: 270px;
     height: 270px;
-    background-image: url("grid.png");
+    background-image: url("images/grid.png");
     background-size: contain;
     display: flex;
     flex-wrap: wrap;

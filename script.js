@@ -1,6 +1,7 @@
 let cells = document.getElementsByClassName("grid-cell");
 let result = document.getElementById("winner");
 let restart = document.getElementById("restart");
+let gameFinished = false;
 let grid = [
     [0, 0, 0],
     [0, 0, 0],
@@ -46,15 +47,17 @@ function isFinished(grid) {
     if (winner === 1) {
         result.innerHTML = "Player 1 wins !";
         result.classList.remove("hidden");
+        gameFinished = true;
     } 
     else if (winner === 2) {
         result.innerHTML = "Player 2 wins !";
         result.classList.remove("hidden");
-
+        gameFinished = true;
     } 
     else if (gridIsFull(grid)) {
         result.innerHTML = "Draw !";
         result.classList.remove("hidden");
+        gameFinished = true;
     }
 }
 
@@ -62,7 +65,7 @@ let clics = 0;
 
 for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
-        if (!cells[i].classList.contains("clique")) {
+        if (!gameFinished && !cells[i].classList.contains("clique")) {
             cells[i].classList.add("clique");
             clics++;
             if (clics % 2 === 0) {
@@ -78,6 +81,7 @@ for (let i = 0; i < cells.length; i++) {
 }
 
 restart.addEventListener("click", function () {
+    gameFinished = false;
        grid = [
         [0, 0, 0],
         [0, 0, 0],
